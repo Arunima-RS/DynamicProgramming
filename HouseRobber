@@ -1,0 +1,43 @@
+import java.util.Arrays;
+
+public class HouseRobber {
+
+	public static void main(String[] args) {
+		
+		int[] a= {1,2,3,1};
+		
+		int[] dp=new int[a.length+1];
+		
+		Arrays.fill(dp,-1);
+		
+		int max=houseRobber(a,a.length-1,dp);
+		
+		System.out.print(max);
+
+	}
+
+	
+	private static int houseRobber(int[] a,int i,int[] dp) {
+	
+	  if(i<0) {
+		  return 0;
+	  }
+	  
+	  if(i==0) {
+		  return a[0];
+	  }
+	  
+	  if(dp[i]!=-1) {
+		  
+		  return dp[i];
+	  }
+	  
+	  dp[i]=Math.max(a[i]+ houseRobber(a, i-2, dp),houseRobber(a, i-1, dp));
+
+		
+       return dp[i];
+	}
+
+	
+	
+}
